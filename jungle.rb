@@ -17,7 +17,7 @@ class Jungle
     puts "2. Examine an animal"
     puts "3. Go forward one year in time"
     puts "4. List the animals"
-    # puts "5. List the plants"
+    puts "5. List the plants"
     puts "6. Get an animal to have babies"
     puts "7. Make all the animals make noise"
     puts "8. Get one animal to eat another"
@@ -42,54 +42,29 @@ class Jungle
   end
 
   def add_animal
-    puts "what kind of animal is this?"
-    new_animal = Animal.new(gets.chomp)
-    puts "what is the animal's name?"
-    new_animal.name = gets.chomp
-    puts "what is #{new_animal.type}'s life expectancy?"
-    new_animal.life_expectancy = gets.chomp.to_i
-    puts "what does #{new_animal.type} eat? (separate with commas)"
-    new_animal.prey = gets.chomp.split(",").collect { |item| item.strip }
-    puts "what hunts this animal? (separate with commas)"
-    new_animal.predators = gets.chomp.split(",").collect { |item| item.strip }
-    puts "what sound does this animal make?"
-    new_animal.sound = gets.chomp
-    new_animal.age = rand(1..new_animal.life_expectancy.to_i)
+    #add an animal to the jungle
   end
 
   def make_animal_give_birth
-    puts "which animal would you like to give birth?"
-    see_animals
-    animal = Animal.all[gets.chomp.to_i]
-    puts "how many babies would you like #{animal.name} to have?"
-    animal.give_birth(gets.chomp)
+    #create babies!
   end
 
   def see_animals
-    puts "These are the animals in the jungle"
-    Animal.all.each_with_index do |animal, i|
-      puts "#{i}. #{animal.name} the #{animal.type}"
-    end
+    #list all the animals in the jungle
   end
 
   def make_animal_sounds
-    Animal.all.each do |a|
-      `say "#{a.sound}"`
+    Animal.all.each do |animal|
+      `say "#{animal.sound}"`
     end
   end
 
   def fast_forward
-    Animal.all.each do |animal|
-      animal.age += 1
-    end
+    #adds a year to each animal's life
   end
 
   def examine_animal
-    puts "what animal would you like to examine?"
-    see_animals
-    animal = Animal.all[gets.chomp.to_i]
-    `say "#{animal.sound}"`
-    puts "#{animal.name.capitalize} is a #{animal.type} and is #{animal.age} years old (#{animal.type}s have a life expectancy of #{animal.life_expectancy}). It eats #{animal.prey.join(" and ")} and is eaten by #{animal.predators.join(" and ")}. It has #{animal.offspring} children."
+    #prints out all the animals attributes
   end
 end
 
